@@ -60,6 +60,7 @@ extern "C" {
 
 /** Send buffer of TCP socket. */
 #define MAIN_PREFIX_BUFFER                  "GET / HTTP/1.1\r\n Accept: */*\r\n\r\n"
+#define MAIN_PREFIX_BUFFER_POST				"POST /user/register HTTP/1.1\r\n Content-Type: application/x-www-form-urlencoded\r\n Accept: */*\r\n\r\n Content-Length: 13\r\n say=Hi&to=Mom " 
 
 /** Weather information provider server. */
 #define MAIN_SERVER_NAME                    "embassados.brartc.com"

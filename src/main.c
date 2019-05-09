@@ -155,7 +155,8 @@ static void socket_cb(SOCKET sock, uint8_t u8Msg, void *pvMsg)
       printf("socket_msg_connect\n"); 
 			if (gbTcpConnection) {
 				memset(gau8ReceivedBuffer, 0, sizeof(gau8ReceivedBuffer));
-				sprintf((char *)gau8ReceivedBuffer, "%s", MAIN_PREFIX_BUFFER);
+				//sprintf((char *)gau8ReceivedBuffer, "%s", MAIN_PREFIX_BUFFER); do get
+				sprintf((char *)gau8ReceivedBuffer, "%s", MAIN_PREFIX_BUFFER_POST); //do POST
 
 				tstrSocketConnectMsg *pstrConnect = (tstrSocketConnectMsg *)pvMsg;
 				if (pstrConnect && pstrConnect->s8Error >= SOCK_ERR_NO_ERROR) {
