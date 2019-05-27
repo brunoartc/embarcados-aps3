@@ -27,7 +27,37 @@ async function registerSensorData(name, data, timestamp) {
 
 
 
+async function getSensorData(callback) {
+  return new Promise(function (resolve, reject) {
+
+		let data_last = {}
+
+
+		console.log("sensor data");
+
+		global.conn.collection("sensors").find().sort({ $natural: -1 }).limit(1).toArray(callback);
+		
+
+		global.conn.collection("sensors").find({ "name": "analogico" }).sort({ $natural: -1 }).limit(1).toArray((e,docs) => {
+			console.log(" resp sensor data");
+
+					data_last.analogic = docs;
+					global.conn.collection("sensors").find({ "name": "digital" }).sort({ $natural: -1 }).limit(1).toArray((e,docs) => {
+						data_last.digital = docs;
+						resolve({ "status": "success", "data": { "name": "SENSORS", "data": data_last } })
+					})
+			  
+			  
+			  //reject({ "status": "error", "data": "?" })
+		})
+
+  })
+}
 
 
 
-module.exports = { registerSensorData };
+
+
+
+
+module.exports = { registerSensorData, getSensorData };
