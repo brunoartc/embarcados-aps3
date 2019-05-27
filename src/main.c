@@ -156,7 +156,9 @@ static void socket_cb(SOCKET sock, uint8_t u8Msg, void *pvMsg)
 			if (gbTcpConnection) {
 				memset(gau8ReceivedBuffer, 0, sizeof(gau8ReceivedBuffer));
 				//sprintf((char *)gau8ReceivedBuffer, "%s", MAIN_PREFIX_BUFFER); do get
-				sprintf((char *)gau8ReceivedBuffer, "%s", MAIN_PREFIX_BUFFER_POST); //do POST
+				char sendd[100];
+				sprintf(sendd,  MAIN_PREFIX_BUFFER_POST, "nome do sensor", "valor do sensor", "timestamp" ); //TODO colocar sensores no lugar das strings
+				sprintf((char *)gau8ReceivedBuffer, "%s", sendd); //do POST
 
 				tstrSocketConnectMsg *pstrConnect = (tstrSocketConnectMsg *)pvMsg;
 				if (pstrConnect && pstrConnect->s8Error >= SOCK_ERR_NO_ERROR) {
@@ -187,6 +189,7 @@ static void socket_cb(SOCKET sock, uint8_t u8Msg, void *pvMsg)
         printf(pstrRecv->pu8Buffer);
 				
 				memset(gau8ReceivedBuffer, 0, sizeof(gau8ReceivedBuffer));
+				
 				recv(tcp_client_socket, &gau8ReceivedBuffer[0], MAIN_WIFI_M2M_BUFFER_SIZE, 0);
 			} else {
 				printf("socket_cb: recv error!\r\n");
