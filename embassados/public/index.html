@@ -1,4 +1,67 @@
 <html>
-<a href="/user">Info</a>
+
+<head>
+  <title>Express</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+
+  <script>
+    function loadXMLDoc() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          let pars = JSON.parse(this.responseText);
+          console.log(pars.data.data.analogic);
+          document.getElementById("analogic").innerHTML = pars.data.data.analogic[0].data
+          document.getElementById("digital").innerHTML = pars.data.data.digital[0].data
+
+        }
+      };
+      xhttp.open("GET", "/users/sensores", true);
+      xhttp.send();
+    }
+  </script>
+  <script>
+    ! function foo() {
+      setTimeout(foo, 1000);
+      loadXMLDoc()
+    }();
+  </script>
+  <style>
+    table,
+    th,
+    td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 5px;
+      text-align: left;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>Cell that spans two columns</h2>
+  <p>To make a cell span more than one column, use the colspan attribute.</p>
+
+  <table style="width:100%">
+    <tr>
+      <th>Name</th>
+      <th colspan="2">value</th>
+    </tr>
+    <tr>
+      <td>Analogic</td>
+      <td id="analogic">55577854</td>
+    </tr>
+    <tr>
+      <td>Digital</td>
+      <td id="digital">55577854</td>
+    </tr>
+  </table>
+
+</body>
 
 </html>
