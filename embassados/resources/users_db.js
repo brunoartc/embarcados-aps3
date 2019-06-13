@@ -10,7 +10,7 @@ async function registerSensorData(name, data, timestamp) {
 			  if (error){
 
 			  } else {
-				console.log(resp);
+				//console.log(resp);
 			  }
 			  
 			  
@@ -38,8 +38,8 @@ async function getSensorData(callback) {
 		global.conn.collection("sensors").find().sort({ $natural: -1 }).limit(1).toArray(callback);
 		
 
-		global.conn.collection("sensors").find({ "name": "analogico" }).sort({ $natural: -1 }).limit(1).toArray((e,docs) => {
-			console.log(" resp sensor data");
+		global.conn.collection("sensors").find({ "name": "analogic" }).sort({ $natural: -1 }).limit(1).toArray((e,docs) => {
+			console.log(docs);
 
 					data_last.analogic = docs;
 					global.conn.collection("sensors").find({ "name": "digital" }).sort({ $natural: -1 }).limit(1).toArray((e,docs) => {

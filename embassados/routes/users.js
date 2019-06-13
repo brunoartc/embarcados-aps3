@@ -3,6 +3,7 @@ var router = express.Router();
 var users = require('../resources/users_db')
 
 router.post('/register', function (req, res, next) {
+  console.log(req.body);
   users.registerSensorData(req.body.name, req.body.data, req.body.timestamp).then((resp) => res.send(resp)).catch((err) => console.log(err))
 });
 

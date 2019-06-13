@@ -19,15 +19,15 @@ global.db = require('../db')
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '5000');
+var port = normalizePort(process.env.PORT || '443');
 app.set('port', port);
 
 /**
  * Create HTTP server.
  */
 
-//var server = https.createServer(credentials, app);
-var server = http.createServer(app);
+var server = https.createServer(credentials, app);
+//var server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
