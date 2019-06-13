@@ -14,4 +14,8 @@ router.get('/sensores', function (req, res, next) {
   users.getSensorData().then((resp) => res.send(resp)).catch((err) => console.log(err))
 });
 
+router.get('/tempo', function (req, res, next) {
+  res.send(new Date().getTime() / 1000)
+});
+
 module.exports = router;
